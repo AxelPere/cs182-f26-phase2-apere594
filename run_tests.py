@@ -28,7 +28,7 @@ def program_names():
 
 def fuzz(args):
     # runs the fuzzer, returns the command and the lines it printed
-    command = ["python3", "src/fuzz.py"] + args
+    command = [sys.executable, "src/fuzz.py"] + args
     result = subprocess.run(command, capture_output=True, cwd=here)
     text = result.stdout.decode("utf-8", errors="replace").replace("\r\n", "\n")
     return " ".join(command), text.strip().split("\n"), result.returncode
