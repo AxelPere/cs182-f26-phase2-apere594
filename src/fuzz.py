@@ -156,8 +156,7 @@ def run(tokens):
             tb = tb.tb_next
         signature = type(e).__name__ + " at line " + str(line)
     cov.stop()
-    result = cov.analysis2(program_path)
-    covered = set(result[1]) - set(result[3])
+    covered = set(cov.get_data().lines(program_path) or [])
     return signature, covered
 
 
